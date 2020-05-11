@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 const CoursesList = (props) => {
   return (
     <>
-      <h1>Courses</h1>
       <table className="table">
         <thead>
           <tr>
@@ -32,7 +31,7 @@ CoursesList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
+      slug: PropTypes.string,
       authorId: PropTypes.number.isRequired,
       category: PropTypes.string.isRequired,
     })
