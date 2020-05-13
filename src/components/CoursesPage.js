@@ -9,7 +9,7 @@ const CoursesPage = () => {
   useEffect(() => {
     (async () => {
       const courses = await getCourses();
-      setCoursesList([...coursesList, ...courses]);
+      setCoursesList([...courses]);
     })();
   }, []);
 
