@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CourseForm from "./CourseForm";
 import { saveCourse } from "../api/courseApi";
+import { toast } from "react-toastify";
 
 const ManageCoursePage = (props) => {
   const [course, setCourse] = useState({
@@ -20,6 +21,7 @@ const ManageCoursePage = (props) => {
     (async () => {
       await saveCourse(course);
       props.history.push("/courses");
+      toast.success("Course saved :)¡¡¡¡");
     })();
   };
 
