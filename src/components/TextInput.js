@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const TextInput = (props) => {
-  const errorClass = props.error.length > 0 ? "has-error" : "";
+  const errorClass = props.error ? "has-error" : "";
   const lowerName = props.name.toLowerCase();
 
   return (
@@ -22,7 +22,11 @@ const TextInput = (props) => {
           value={props.val}
         />
       </div>
-      {props.error && <div className="alert alert-danger">{props.error}</div>}
+      {props.error ? (
+        <div className="alert alert-danger">{props.error}</div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
