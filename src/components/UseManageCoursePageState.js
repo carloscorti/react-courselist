@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { getCourseBySlug } from "../api/courseApi";
+import { getAuthors } from "../api/authorApi";
 
 const useManageCoursePageState = (slug) => {
+  const [authors, setAuthors] = useState(["hola"]);
   const [error, setError] = useState({});
   const [course, setCourse] = useState({
     id: null,
@@ -12,12 +14,14 @@ const useManageCoursePageState = (slug) => {
   });
 
   useEffect(() => {
-    if (slug) {
-      (async () => {
+    (async () => {
+      const auth = await getAuthors();
+      setAuthors([...auth]);
+      if (slug) {
         const slugCourse = await getCourseBySlug(slug);
         setCourse({ ...slugCourse });
-      })();
-    }
+      }
+    })();
   }, [slug]);
 
   const inputHandler = (event) => {
@@ -38,6 +42,7 @@ const useManageCoursePageState = (slug) => {
   };
 
   return {
+    authors,
     error,
     course,
     inputHandler,

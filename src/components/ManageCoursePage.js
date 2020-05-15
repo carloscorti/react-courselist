@@ -6,6 +6,7 @@ import useManageCoursePageState from "./UseManageCoursePageState";
 
 const ManageCoursePage = (props) => {
   const {
+    authors,
     error,
     course,
     inputHandler,
@@ -29,6 +30,7 @@ const ManageCoursePage = (props) => {
       <h2>Manage Course</h2>
       <CourseForm
         course={course}
+        authors={authors}
         inputHandler={inputHandler}
         submitHandler={submitHandler}
         error={error}

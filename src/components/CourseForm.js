@@ -21,9 +21,10 @@ const CourseForm = (props) => {
             value={props.course.authorId || ""}
             className="form-control"
           >
-            <option value="" />
-            <option value="1">Cory House</option>
-            <option value="2">Scott Allen</option>
+            <option value=""></option>
+            {props.authors.map((aut) => (
+              <option value={aut.id}>{aut.name}</option>
+            ))}
           </select>
         </div>
         {props.error.authorId ? (
@@ -45,6 +46,7 @@ const CourseForm = (props) => {
 
 CourseForm.propTypes = {
   course: PropTypes.object.isRequired,
+  authors: PropTypes.array.isRequired,
   inputHandler: PropTypes.func.isRequired,
   submitHandler: PropTypes.func.isRequired,
   error: PropTypes.object.isRequired,
