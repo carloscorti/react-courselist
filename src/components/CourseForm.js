@@ -1,5 +1,6 @@
 import React from "react";
 import TextInput from "./TextInput";
+import PropTypes from "prop-types";
 
 const CourseForm = (props) => {
   return (
@@ -40,6 +41,13 @@ const CourseForm = (props) => {
       <input type="submit" value="Save" className="btn btn-primary" />
     </form>
   );
+};
+
+CourseForm.propTypes = {
+  course: PropTypes.object.isRequired,
+  inputHandler: PropTypes.func.isRequired,
+  submitHandler: PropTypes.func.isRequired,
+  error: PropTypes.object.isRequired,
 };
 
 export default CourseForm;

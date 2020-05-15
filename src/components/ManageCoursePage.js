@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CourseForm from "./CourseForm";
 import { saveCourse } from "../api/courseApi";
 import { toast } from "react-toastify";
+import { getCourseBySlug } from "../api/courseApi";
 
 const ManageCoursePage = (props) => {
   const [error, setError] = useState({});
@@ -13,16 +14,26 @@ const ManageCoursePage = (props) => {
     category: "",
   });
 
+  useEffect(() => {
+    if (props.match.params.slug) {
+      (async () => {
+        const slugCourse = await getCourseBySlug(props.match.params.slug);
+        setCourse({ ...slugCourse });
+      })();
+    }
+  }, [props.match.params.slug]);
+
   const inputHandler = (event) => {
     setCourse({ ...course, [event.target.name]: event.target.value });
   };
 
-  const inputValidation = (course) => {
+  const inputValidation = (courseState) => {
     const validationError = {};
 
-    if (!course.title) validationError.title = "Title is required";
-    if (!course.authorId) validationError.authorId = "Author is required";
-    if (!course.category) validationError.category = "Category is required";
+    if (!courseState.title) validationError.title = "Title is required";
+    if (!courseState.authorId) validationError.authorId = "Author is required";
+    if (!courseState.category)
+      validationError.category = "Category is required";
 
     setError({ ...validationError });
 
