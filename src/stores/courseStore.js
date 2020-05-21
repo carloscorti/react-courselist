@@ -36,6 +36,11 @@ Dispatcher.register((action) => {
       store.emitChange();
       break;
 
+    case actionTypeDeclared.FETCH_COURSELIST:
+      _courses = action.courseList;
+      store.emitChange();
+      break;
+
     default:
   }
 });

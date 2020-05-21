@@ -1,6 +1,7 @@
 import React from "react";
 import CourseForm from "./CourseForm";
-import { saveCourse } from "../api/courseApi";
+// import { saveCourse } from "../api/courseApi";
+import * as courseActions from "../actions/courseActions";
 import { toast } from "react-toastify";
 import useManageCoursePageState from "./UseManageCoursePageState";
 
@@ -17,7 +18,7 @@ const ManageCoursePage = (props) => {
     event.preventDefault();
     if (inputValidation(course)) {
       (async () => {
-        await saveCourse(course);
+        await courseActions.saveCourse(course);
         props.history.push("/courses");
         toast.success("Course saved :)¡¡¡¡");
       })();

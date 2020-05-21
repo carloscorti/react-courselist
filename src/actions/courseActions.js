@@ -11,3 +11,13 @@ export const saveCourse = (course) => {
     });
   })();
 };
+
+export const loadCourses = () => {
+  return (async () => {
+    const courseList = await courseApi.getCourses();
+    distpacher.dispatch({
+      actionType: actionTypeDeclared.FETCH_COURSELIST,
+      courseList,
+    });
+  })();
+};

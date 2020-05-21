@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { getCourseBySlug } from "../api/courseApi";
 import { getAuthors } from "../api/authorApi";
+import courseStore from "../stores/courseStore";
 
 const useManageCoursePageState = (slug) => {
-  const [authors, setAuthors] = useState(["hola"]);
+  const [authors, setAuthors] = useState([]);
   const [error, setError] = useState({});
   const [course, setCourse] = useState({
     id: null,
@@ -18,7 +18,7 @@ const useManageCoursePageState = (slug) => {
       const auth = await getAuthors();
       setAuthors([...auth]);
       if (slug) {
-        const slugCourse = await getCourseBySlug(slug);
+        const slugCourse = courseStore.getCourseBySlug(slug);
         setCourse({ ...slugCourse });
       }
     })();

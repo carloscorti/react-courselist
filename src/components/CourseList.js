@@ -20,6 +20,7 @@ const CoursesList = (props) => {
                 <Link to={`/course/${course.slug}`}>{course.title}</Link>
               </td>
               <td>{course.authorId.name}</td>
+              {/* <td>{course.authorId}</td> */}
               <td>{course.category}</td>
             </tr>
           ))}
@@ -36,6 +37,7 @@ CoursesList.propTypes = {
       title: PropTypes.string.isRequired,
       slug: PropTypes.string.isRequired,
       authorId: PropTypes.object.isRequired,
+      // authorId: PropTypes.number.isRequired,
       category: PropTypes.string.isRequired,
     })
   ).isRequired,
@@ -48,6 +50,7 @@ CoursesList.defaultProps = {
       title: "error defoult data",
       slug: "error defoult data",
       authorId: {},
+      // authorId: 0,
       category: "error defoult data",
     },
   ],
