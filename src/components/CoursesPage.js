@@ -29,8 +29,10 @@ const CoursesPage = () => {
         );
         courses = [...courseStore.getCourses()];
       }
+
       const authors = await getAuthors();
-      const completeCourses = courses.map((course) => {
+      const completeCourses = JSON.parse(JSON.stringify(courses));
+      completeCourses.map((course) => {
         authors.forEach((author) => {
           if (author.id === course.authorId) return (course.authorId = author);
         });

@@ -23,7 +23,7 @@ class CourseStore extends EventEmitter {
   }
 
   getCourseBySlug(slug) {
-    return _courses.find((cuorse) => cuorse.slug === slug);
+    return _courses.find((item) => item.slug === slug);
   }
 }
 
@@ -38,6 +38,13 @@ Dispatcher.register((action) => {
 
     case actionTypeDeclared.FETCH_COURSELIST:
       _courses = action.courseList;
+      store.emitChange();
+      break;
+
+    case actionTypeDeclared.UPDATE_COURSE:
+      _courses = _courses.map((item) =>
+        item.id === action.course.id ? action.course : item
+      );
       store.emitChange();
       break;
 

@@ -6,7 +6,9 @@ export const saveCourse = (course) => {
   return (async () => {
     const savedCourse = await courseApi.saveCourse(course);
     distpacher.dispatch({
-      actionType: actionTypeDeclared.CREATE_COURSE,
+      actionType: course.id
+        ? actionTypeDeclared.UPDATE_COURSE
+        : actionTypeDeclared.CREATE_COURSE,
       course: savedCourse,
     });
   })();
