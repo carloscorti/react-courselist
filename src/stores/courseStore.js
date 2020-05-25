@@ -48,6 +48,11 @@ Dispatcher.register((action) => {
       store.emitChange();
       break;
 
+    case actionTypeDeclared.DELETE_COURSE:
+      _courses = _courses.filter((item) => item.id !== action.courseId);
+      store.emitChange();
+      break;
+
     default:
   }
 });

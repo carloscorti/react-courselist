@@ -23,3 +23,13 @@ export const loadCourses = () => {
     });
   })();
 };
+
+export const deleteCourse = (courseId) => {
+  return (async () => {
+    await courseApi.deleteCourse(courseId);
+    distpacher.dispatch({
+      actionType: actionTypeDeclared.DELETE_COURSE,
+      courseId: parseInt(courseId),
+    });
+  })();
+};

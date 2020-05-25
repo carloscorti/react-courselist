@@ -15,18 +15,31 @@ const useManageCoursePageState = (slug) => {
   });
 
   useEffect(() => {
+    const onChange = () => {
+      if (slug) {
+        console.log("cargo cursos en la pagina por evento change");
+        setCourse({ ...courseStore.getCourseBySlug(slug) });
+      }
+    };
     (async () => {
+      console.log("agrego event listener");
+
+      courseStore.addChangeListener(onChange);
+
       const auth = await getAuthors();
       setAuthors([...auth]);
       if (courseStore.getCourses().length === 0) {
         console.log("cargo cursos en store llamando a la base de datos");
         await courseActions.loadCourses();
-      }
-      if (slug) {
+      } else if (slug) {
         const slugCourse = courseStore.getCourseBySlug(slug);
         setCourse({ ...slugCourse });
       }
     })();
+    return () => {
+      console.log("remove event listener");
+      courseStore.removeChangeLister(onChange);
+    };
   }, [slug]);
 
   const inputHandler = (event) => {

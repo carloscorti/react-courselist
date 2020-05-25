@@ -42,6 +42,18 @@ const CourseForm = (props) => {
         error={props.error.category}
       />
       <input type="submit" value="Save" className="btn btn-primary" />
+      {props.course.id && (
+        <>
+          <span> </span>
+          <button
+            onClick={props.deleteHandler}
+            value={props.course.id}
+            className="btn btn-primary"
+          >
+            Delete
+          </button>
+        </>
+      )}
     </form>
   );
 };

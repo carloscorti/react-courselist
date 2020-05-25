@@ -26,6 +26,15 @@ const ManageCoursePage = (props) => {
     return;
   };
 
+  const deleteHandler = (event) => {
+    (async () => {
+      event.preventDefault();
+      await courseActions.deleteCourse(event.target.value);
+      props.history.push("/courses");
+      toast.dark("Course deleted :)¡¡¡¡");
+    })();
+  };
+
   return (
     <>
       <h2>Manage Course</h2>
@@ -34,6 +43,7 @@ const ManageCoursePage = (props) => {
         authors={authors}
         inputHandler={inputHandler}
         submitHandler={submitHandler}
+        deleteHandler={deleteHandler}
         error={error}
       />
     </>
